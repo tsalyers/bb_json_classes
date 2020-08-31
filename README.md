@@ -27,6 +27,7 @@ You'll now have a dictionary (json_classes) with class name placeholders as the 
 The generated classes are **self-validating**--that is, you'll receive an error on instantiation if a required field is omitted, or if a wrong data type is assigned to a field, or if a value exceeds a field's maximum size...and so on, which should help reduce "400 Bad Request" errors. Each class also has a get_json() method that will return the properly-formatted JSON from objects, like so:
 
 `course.get_json()`
+
 `{"courseId": "ENG101", "name": "English101"}`
 
 ### Caveats
