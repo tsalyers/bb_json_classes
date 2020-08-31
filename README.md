@@ -1,4 +1,4 @@
-# **bb_json_classes **
+# **bb_json_classes**
 
 This is a small set of helper functions to make the job of creating objects (courses, announcements, etc.) with the Blackboard Learn REST APIs slightly easier. Using the APIs is easy enough, but constructing the required JSON bodies can be a little fiddly.  
 
@@ -9,6 +9,7 @@ I may make this a proper Python package at some point, but for now you can use t
 ### Usage
 
 `from bb_json_classes import get_json_classes`
+
 `json_classes = get_json_classes()`
 
 (You can optionally specify an API version. E.g., `json_classes = get_json_classes('3800.17.0')`.) 
@@ -20,6 +21,7 @@ You'll now have a dictionary (json_classes) with class name placeholders as the 
 ...or by optionally assigning the function to a variable and using it:
 
 `CreateCourse = classes['CreateCourseJSON']`
+
 `course = CreateCourse(courseId='ENG101', name='English101')`
 
 The generated classes are **self-validating**--that is, you'll receive an error on instantiation if a required field is omitted, or if a wrong data type is assigned to a field, or if a value exceeds a field's maximum size...and so on, which should help reduce "400 Bad Request" errors. Each class also has a get_json() method that will return the properly-formatted JSON from objects, like so:
@@ -33,6 +35,7 @@ The generated classes are **self-validating**--that is, you'll receive an error 
 * There's also currently no way in the warlock library to create nested fields (e.g., availability in courses) directly. For the time being, you'll have to pass in nested values as their own dictionaries. For example:  
 
 `avail={'availability':'Yes'}`
+
 `course = CreateCourseJSON(courseId='ENG101', name='English 101', availability=avail)`
 
 * Warlock will still validate nested fields, though. For instance, providing an invalid value for availability will throw an error.
